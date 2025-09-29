@@ -1,0 +1,82 @@
+@startuml 作业1 - 类图
+
+class Student {
+  - id: String
+  - name: String
+  - borrowedBooks: int
+  + Student(id: String, name: String)
+  + getId(): String
+  + getName(): String
+  + getBorrowedBooks(): int
+  + borrowBook(): void
+  + returnBook(): void
+}
+
+class OwnerCar {
+  - licensePlate: String
+  - ownerName: String
+  - color: String
+  - mileage: int
+  + OwnerCar(licensePlate: String, ownerName: String, color: String, mileage: int)
+  + getLicensePlate(): String
+  + getOwnerName(): String
+  + getColor(): String
+  + getMileage(): int
+  + drive(distance: int): void
+  + printInfo(): void
+}
+
+class ManufacturerCar {
+  - model: String
+  - engineType: String
+  - year: int
+  - vin: String
+  + ManufacturerCar(model: String, engineType: String, year: int, vin: String)
+  + getModel(): String
+  + getEngineType(): String
+  + getYear(): int
+  + getVin(): String
+  + recall(reason: String): void
+  + printInfo(): void
+}
+
+class AuthorityCar {
+  - licensePlate: String
+  - registrationDate: String
+  - isInspected: boolean
+  - isStolen: boolean
+  + AuthorityCar(licensePlate: String, registrationDate: String, isInspected: boolean, isStolen: boolean)
+  + getLicensePlate(): String
+  + getRegistrationDate(): String
+  + isInspected(): boolean
+  + isStolen(): boolean
+  + inspect(): void
+  + reportStolen(): void
+  + printInfo(): void
+}
+
+class Book {
+  - isbn: String
+  - title: String
+  - author: String
+  - isBorrowed: boolean
+  + Book(isbn: String, title: String, author: String)
+  + getIsbn(): String
+  + getTitle(): String
+  + getAuthor(): String
+  + isBorrowed(): boolean
+  + borrow(): void
+  + returned(): void
+}
+
+class Librarian {
+  - id: String
+  - name: String
+  + Librarian(id: String, name: String)
+  + getId(): String
+  + getName(): String
+  + lendBook(student: Student, book: Book): void
+  + receiveBook(student: Student, book: Book): void
+}
+
+@enduml
