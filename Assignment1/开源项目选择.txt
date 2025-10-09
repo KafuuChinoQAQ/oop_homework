@@ -1,0 +1,3 @@
+选择基于python的网站框架django进行代码研读
+
+https://github.com/django/django
