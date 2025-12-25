@@ -1,0 +1,62 @@
+{
+  "RestartApplyForm": {
+    "clean_apply_end_date": [
+      {
+        "condition": "value <= timezone.now()",
+        "error": "报名截止时间必须晚于当前时间。",
+        "field": "apply_end_date"
+      }
+    ],
+    "clean_apply_max_number": [
+      {
+        "condition": "value <= 0",
+        "error": "报名人数上限必须大于0。"
+      }
+    ]
+  }
+  ,
+  "AddActivityForm": {
+    "clean": [
+      {
+        "condition": "cleaned_data.get('apply_start_date') and cleaned_data.get('apply_end_date') and cleaned_data.get('apply_start_date') >= cleaned_data.get('apply_end_date')",
+        "error": "报名截止时间必须晚于报名开始时间。",
+        "field": "apply_end_date"
+      },
+      {
+        "condition": "apply_end_date and apply_end_date <= timezone.now()",
+        "error": "报名截止时间必须晚于当前时间。",
+        "field": "apply_end_date"
+      },
+      {
+        "condition": "apply_max_number is not None and apply_max_number <= 0",
+        "error": "请输入正整数。",
+        "field": "apply_max_number"
+      },
+      {
+        "condition": "not cleaned_data.get('description') and not cleaned_data.get('description_file')",
+        "error": "至少填写一个。",
+        "field": "description_file"
+      },
+      {
+        "condition": "description_file and description_file.name and not (description_file.name.lower().endswith('.docx') or description_file.name.lower().endswith('.doc') or description_file.name.lower().endswith('.pdf') or description_file.name.lower().endswith('.rar') or description_file.name.lower().endswith('.zip') or description_file.name.lower().endswith('.7z'))",
+        "error": "不支持的文件格式。",
+        "field": "description_file"
+      },
+      {
+        "condition": "description_file and description_file.size > (10 * 1024 * 1024)",
+        "error": "文件过大。",
+        "field": "description_file"
+      },
+      {
+        "condition": "application_form_file and application_form_file.name and not (application_form_file.name.lower().endswith('.xlsx') or application_form_file.name.lower().endswith('.xls') or application_form_file.name.lower().endswith('.docx') or application_form_file.name.lower().endswith('.doc') or application_form_file.name.lower().endswith('.pdf'))",
+        "error": "不支持的文件格式。",
+        "field": "application_form_file"
+      },
+      {
+        "condition": "application_form_file and application_form_file.size > (3 * 1024 * 1024)",
+        "error": "文件过大。",
+        "field": "application_form_file"
+      }
+    ]
+  }
+}
